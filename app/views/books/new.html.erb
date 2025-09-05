@@ -2,12 +2,9 @@
 
 <div class="w-full">
   <div class="sm:flex sm:items-center">
-    <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold text-gray-900">New book</h1>
-      <p class="mt-2 text-sm text-gray-700">Add a new book to your library.</p>
-    </div>
+    <%= render PageTitleComponent.new(title: "New book", description: "Add a new book to your library.") %>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-      <%= link_to "Back to books", books_path, class: "block rounded-md bg-white px-3 py-2 text-center text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 hover:bg-gray-50" %>
+      <%= render ButtonComponent.new(text: "Back to books", variant: :secondary, href: books_path) %>
     </div>
   </div>
 

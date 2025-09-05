@@ -1,0 +1,7 @@
+<% if message.present? %>
+  <div class="<%= container_classes %>">
+    <p class="<%= alert_classes %>" id="<%= alert_id %>">
+      <%= message %>
+    </p>
+  </div>
+<% end %>

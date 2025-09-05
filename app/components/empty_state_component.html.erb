@@ -1,0 +1,12 @@
+<div class="text-center py-12">
+  <div class="mx-auto h-12 w-12 text-gray-400">
+    <%= raw icon_svg %>
+  </div>
+  <h3 class="mt-2 text-sm font-semibold text-gray-900"><%= title %></h3>
+  <p class="mt-1 text-sm text-gray-500"><%= description %></p>
+  <% if action_text.present? && action_path.present? %>
+    <div class="mt-6">
+      <%= render ButtonComponent.new(text: action_text, variant: :primary, href: send(action_path)) %>
+    </div>
+  <% end %>
+</div>

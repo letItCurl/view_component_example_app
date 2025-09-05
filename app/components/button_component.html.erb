@@ -1,0 +1,5 @@
+<% if href.present? %>
+  <%= link_to text, href, all_html_options %>
+<% else %>
+  <%= button_to text, href, method: method, **all_html_options %>
+<% end %>

@@ -1,24 +1,11 @@
-# README
+# ViewComponent Example App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Rails application demonstrating how to build reusable UI components using ViewComponent to create maintainable, consistent, and scalable user interfaces.
 
-Things you may want to cover:
+## What This Demonstrates
 
-* Ruby version
+• **Component-Based Architecture**: Shows how to break down complex UI patterns into reusable ViewComponents (like PageTitleComponent) that eliminate code duplication and ensure consistency across views
 
-* System dependencies
+• **Rails View Refactoring**: Demonstrates the transformation from traditional Rails partials and helpers to modern, testable components that encapsulate both logic and presentation
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+• **Developer Experience**: Illustrates how ViewComponent improves maintainability by centralizing UI patterns, making changes easier to implement and reducing the likelihood of inconsistencies across the application

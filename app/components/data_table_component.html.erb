@@ -1,0 +1,54 @@
+<% if has_data? %>
+  <table class="min-w-full divide-y divide-gray-300">
+    <thead>
+      <tr>
+        <% columns.each do |column| %>
+          <th scope="col" class="<%= header_classes(column) %>">
+            <%= column[:header] %>
+          </th>
+        <% end %>
+        <% if actions.present? %>
+          <th scope="col" class="py-3.5 pr-4 pl-3 sm:pr-0">
+            <span class="sr-only">Actions</span>
+          </th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200 bg-white">
+      <% data.each do |item| %>
+        <tr>
+          <% columns.each do |column| %>
+            <td class="<%= cell_classes(column) %>">
+              <% if column[:content].is_a?(Proc) %>
+                <%= column[:content].call(item) %>
+              <% else %>
+                <%= item.public_send(column[:content]) %>
+              <% end %>
+            </td>
+          <% end %>
+          <% if actions.present? %>
+            <td class="py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-0">
+              <div class="flex justify-end space-x-2">
+                <% if actions.is_a?(Proc) %>
+                  <%= actions.call(item) %>
+                <% else %>
+                  <% actions.each do |action| %>
+                    <%= render ButtonComponent.new(
+                      text: action[:text],
+                      variant: action[:variant],
+                      href: action[:href].is_a?(Proc) ? action[:href].call(item) : action[:href],
+                      method: action[:method],
+                      confirm: action[:confirm]
+                    ) %>
+                  <% end %>
+                <% end %>
+              </div>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <%= render empty_state_component %>
+<% end %>
