@@ -1,0 +1,20 @@
+<% content_for :title, "Edit book" %>
+
+<div class="w-full">
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-base font-semibold text-gray-900">Edit book</h1>
+      <p class="mt-2 text-sm text-gray-700">Update the book information below.</p>
+    </div>
+    <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+      <div class="flex space-x-3">
+        <%= link_to "Show this book", @book, class: "block rounded-md bg-white px-3 py-2 text-center text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 hover:bg-gray-50" %>
+        <%= link_to "Back to books", books_path, class: "block rounded-md bg-white px-3 py-2 text-center text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 hover:bg-gray-50" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8">
+    <%= render "form", book: @book %>
+  </div>
+</div>

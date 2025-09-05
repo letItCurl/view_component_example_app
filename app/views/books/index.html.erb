@@ -1,0 +1,75 @@
+<% content_for :title, "Books" %>
+
+<div class="w-full">
+  <% if notice.present? %>
+    <div class="mb-5">
+      <p class="py-2 px-3 bg-green-50 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+    </div>
+  <% end %>
+
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-base font-semibold text-gray-900">Books</h1>
+      <p class="mt-2 text-sm text-gray-700">A list of all the books in your library including their title, abstract, and publication date.</p>
+    </div>
+    <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+      <%= link_to "Add book", new_book_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+    </div>
+  </div>
+
+  <div class="-mx-4 mt-8 sm:-mx-0">
+    <% if @books.any? %>
+      <table class="min-w-full divide-y divide-gray-300">
+        <thead>
+          <tr>
+            <th scope="col" class="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-0">Title</th>
+            <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Abstract</th>
+            <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Created</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
+            <th scope="col" class="py-3.5 pr-4 pl-3 sm:pr-0">
+              <span class="sr-only">Actions</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 bg-white">
+          <% @books.each do |book| %>
+            <tr>
+              <td class="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-0">
+                <%= book.title %>
+              </td>
+              <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
+                <%= truncate(book.abstract, length: 50) %>
+              </td>
+              <td class="hidden px-3 py-4 text-sm whitespace-nowrap text-gray-500 lg:table-cell">
+                <%= book.created_at.strftime("%B %d, %Y") %>
+              </td>
+              <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">
+                <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Active</span>
+              </td>
+              <td class="py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-0">
+                <div class="flex justify-end space-x-2">
+                  <%= link_to "Show", book, class: "text-indigo-600 hover:text-indigo-900" %>
+                  <%= link_to "Edit", edit_book_path(book), class: "text-indigo-600 hover:text-indigo-900" %>
+                  <%= button_to "Delete", book, method: :delete, class: "text-red-600 hover:text-red-900", data: { turbo_confirm: "Are you sure?" } %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <div class="text-center py-12">
+        <div class="mx-auto h-12 w-12 text-gray-400">
+          <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+          </svg>
+        </div>
+        <h3 class="mt-2 text-sm font-semibold text-gray-900">No books</h3>
+        <p class="mt-1 text-sm text-gray-500">Get started by creating a new book.</p>
+        <div class="mt-6">
+          <%= link_to "Add book", new_book_path, class: "inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
